@@ -1,4 +1,4 @@
-var Multilingual = (function(){
+var Multilingual = (function() {
 	//load languages
 	var pdf_url = 'REDCAP_PDF_URL';
 	var ajax_url = 'REDCAP_AJAX_URL';
@@ -415,7 +415,7 @@ var Multilingual = (function(){
 	function symbols(){
 		log('symbols()');
 		//popup
-		$('#redcapValidationErrorPopup').html('<center><span style="color:red;font-size:50px;">&#x26D4;</span></center>');
+		$('#redcapValidationErrorPopup').html('<span style="color:red;font-size:50px;">&#x26D4;</span>');
 
 		//previous page
 		$('.ui-button-text').each(function(){
@@ -759,12 +759,13 @@ var Multilingual = (function(){
 						var nodes = $('#label-' + id).contents();
 						for (var i = 0; i < nodes.length; i++) {
 							// replace textContent of first text type node
-							if (!nodes[i] || !nodes[i].nodeType)
+							/*if (!nodes[i] || !nodes[i].nodeType)
 								continue;
 							if (nodes[i].nodeType === 3) {
 								nodes[i].textContent = translation;
 								break;
-							}
+							}*/
+							nodes[i].innerText = translation;
 						};
 					} else {
 						// replace text node content sequentially
@@ -1142,7 +1143,7 @@ var Multilingual = (function(){
 		
 		if (newLang == null || newLang == undefined) {
 			var cookieLangIndex = getCookie('p1000Lang');
-			if (languages[cookieLangIndex] && !langIsHidden(languages[cookieLangIndex])) {
+			if (Object.values(languages).indexOf(cookieLangIndex) > -1) {
 				lang = cookieLangIndex;
 			} else {
 				lang = null;
@@ -1153,10 +1154,10 @@ var Multilingual = (function(){
 			}
 		} else {
 			if (langIsHidden(newLang) === true) {
-				// log('	language hidden!');
+				 log('	language hidden!');
 				return;
 			} else {
-				// log('	translating to ' + newLang);
+				 log('	translating to ' + newLang);
 				setCookie('p1000Lang', newLang, .04);
 				lang = newLang;
 				translateReady();

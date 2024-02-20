@@ -67,7 +67,7 @@
 							$('#redcapValidationErrorPopup').html(translations['errors'][id]['text']);
 						}
 						else{
-							$('#redcapValidationErrorPopup').html('<center><span style="color:red;font-size:50px;">&#x26D4;</span></center>');
+							$('#redcapValidationErrorPopup').html('<span style="color:red;font-size:50px;">&#x26D4;</span>');
 						}
 
 						$('#redcapValidationErrorPopup').next().children().children().children().html('&#x2714;');
